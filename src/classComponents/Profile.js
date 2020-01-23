@@ -11,7 +11,8 @@ class Profile extends Component {
 
         this.state = {
             user: null,
-            userAuthenticate: true
+            userAuthenticate: true,
+            editClicked: false
         }
     }
     componentDidMount() {
@@ -27,18 +28,25 @@ class Profile extends Component {
             })
             .catch(err => console.log(err))
     }
+    editClicked = () => {
+        this.setState({editClicked: true})
+    }
     render() {
         return(
             <React.Fragment>
                 <div className="container">
-                    {this.state.user ? (<ProfileCard user={this.state.user}/>) : (null)}
+                    {this.state.user ? (<ProfileCard user={this.state.user} editClicked={this.editClicked} />) : (null)}
                 </div>           
                 {this.authenticationRedirect()} 
+                {this.otherRedirects()}
             </React.Fragment>
         )
     }
     authenticationRedirect() {
         return <div>{this.state.userAuthenticate ? (null) : (<Redirect to="/" />)}</div>;
+    }
+    otherRedirects() {
+        return <div>{this.state.editClicked ? (<Redirect to="/user/edit/profile" />) : (null)}</div>
     }
 }
 

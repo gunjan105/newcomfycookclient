@@ -6,6 +6,7 @@ import Home from '../classComponents/Home';
 import Timeline from '../classComponents/Timeline'
 import Logout from '../classComponents/Logout';
 import Profile from '../classComponents/Profile';
+import EditProfile from '../classComponents/EditProfile'
 
 const MyRoutes = () => {
     return(
@@ -15,7 +16,8 @@ const MyRoutes = () => {
                 <Route path="/register" exact component={Register} />             
                 <Route path="/login" exact component={Login} />
                 <Route path="/user/timeline" exact component={Timeline} />         
-                <Route path="/user/profile" exact component={Profile} />         
+                <Route path="/user/profile" exact component={Profile} />
+                <Route path="/user/edit/profile" exact component={EditProfile} />         
                 <Route path="/logout" exact component={Logout} />         
             </Switch>
         </React.Fragment>

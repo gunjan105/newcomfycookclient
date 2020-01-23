@@ -6,8 +6,9 @@ import {AiOutlineEdit} from 'react-icons/ai'
 
 import ProfileCardHeader from './ProfileCardHeader';
 import ProfileCardInfo from './ProfileCardInfo';
+// import { Redirect } from 'react-router-dom';
 
-const ProfileCard = ({user}) => {
+const ProfileCard = ({user, editClicked}) => {
     return(
         <React.Fragment>
             <div className="row mt-5">
@@ -30,11 +31,11 @@ const ProfileCard = ({user}) => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-6"><ProfileCardInfo label="website: " info={user.urls.website} /></div>
-                                <div className="col-6"><ProfileCardInfo label="youtube: " info={user.urls.youtube} /></div>
+                                <div className="col-6"><a href={user.urls.website}><ProfileCardInfo label="website: " info={user.urls.website} /></a></div>
+                                <div className="col-6"><a href={user.urls.youtube}><ProfileCardInfo label="youtube: " info={user.urls.youtube} /></a></div>
                             </div>
                             <div className="row">
-                                <div className="col"><Button outline color="primary" className="btn btn-sm">Edit <AiOutlineEdit></AiOutlineEdit></Button></div>
+                                <div className="col"><Button outline color="primary" className="btn btn-sm" onClick={editClicked}>Edit <AiOutlineEdit></AiOutlineEdit></Button></div>
                                 <div className="col"><Button outline color="success" className="btn btn-sm">Go To Favourites <GoHeart color="red" fontSize="20"></GoHeart></Button></div>
                             </div>
                         </CardBody>
