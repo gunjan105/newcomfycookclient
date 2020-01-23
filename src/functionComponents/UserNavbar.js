@@ -16,7 +16,10 @@ const UserNavbar = () => {
                 <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                    <Link to="/logout">Logout</Link>
+                        <Link to="/user/profile">Profile </Link>
+                    </NavItem>
+                    <NavItem>
+                        <Link to="/logout">Logout</Link>
                     </NavItem>                   
                     {/* <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
