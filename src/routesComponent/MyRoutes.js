@@ -7,6 +7,8 @@ import Timeline from '../classComponents/Timeline'
 import Logout from '../classComponents/Logout';
 import Profile from '../classComponents/Profile';
 import EditProfile from '../classComponents/EditProfile'
+import MyRecipes from '../classComponents/MyRecipes'
+import AddRecipe from '../classComponents/AddRecipe'
 
 const MyRoutes = () => {
     return(
@@ -17,6 +19,8 @@ const MyRoutes = () => {
                 <Route path="/login" exact component={Login} />
                 <Route path="/user/timeline" exact component={Timeline} />         
                 <Route path="/user/profile" exact component={Profile} />
+                <Route path="/user/my-recipe" exact component={MyRecipes} />
+                <Route path="/user/add-recipe" exact component={AddRecipe} />
                 <Route path="/user/edit/profile" exact component={EditProfile} />         
                 <Route path="/logout" exact component={Logout} />         
             </Switch>

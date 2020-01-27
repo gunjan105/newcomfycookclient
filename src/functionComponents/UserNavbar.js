@@ -19,6 +19,9 @@ const UserNavbar = () => {
                         <Link to="/user/profile">Profile </Link>
                     </NavItem>
                     <NavItem>
+                        <Link to="/user/my-recipe">My Recipe </Link>
+                    </NavItem>
+                    <NavItem>
                         <Link to="/logout">Logout</Link>
                     </NavItem>                   
                     {/* <UncontrolledDropdown nav inNavbar>
