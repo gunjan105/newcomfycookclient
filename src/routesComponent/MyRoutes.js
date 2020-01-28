@@ -9,6 +9,7 @@ import Profile from '../classComponents/Profile';
 import EditProfile from '../classComponents/EditProfile'
 import MyRecipes from '../classComponents/MyRecipes'
 import AddRecipe from '../classComponents/AddRecipe'
+import ViewRecipe from '../classComponents/ViewRecipe'
 
 const MyRoutes = () => {
     return(
@@ -21,6 +22,7 @@ const MyRoutes = () => {
                 <Route path="/user/profile" exact component={Profile} />
                 <Route path="/user/my-recipe" exact component={MyRecipes} />
                 <Route path="/user/add-recipe" exact component={AddRecipe} />
+                <Route path="/user/view-recipe/:fid" exact component={ViewRecipe} />
                 <Route path="/user/edit/profile" exact component={EditProfile} />         
                 <Route path="/logout" exact component={Logout} />         
             </Switch>
