@@ -7,6 +7,10 @@ import {MdDelete} from 'react-icons/md'
 import {AiTwotoneEdit} from 'react-icons/ai'
 import FormInput from '../functionComponents/FormInput'
 import {Redirect} from 'react-router-dom'
+import Like from '../functionComponents/ViewRecipeComponents/Like'
+import Fav from '../functionComponents/ViewRecipeComponents/Fav'
+import Unlike from '../functionComponents/ViewRecipeComponents/Unlike'
+import Unfav from '../functionComponents/ViewRecipeComponents/Unfav'
 
 
 class ViewRecipe extends Component {
@@ -20,7 +24,9 @@ class ViewRecipe extends Component {
             deleteModal: false,
             random: this.randomStr(6, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
             randomInput: null,
-            deleteRedirect: false
+            deleteRedirect: false,
+            likedByUser: null,
+            favByUser: null
         }
     }
     componentDidMount() {
@@ -29,6 +35,17 @@ class ViewRecipe extends Component {
                 if(res.data.success){
                     this.setState({food: res.data.food})
                     console.log(res.data.food)
+                    if (res.data.food.likes.indexOf(this.state.user) > -1) {
+                        this.setState({likedByUser: true})
+                    } else {
+                        this.setState({likedByUser: false})
+                    }
+                    console.log(res.data.food.user.favourites)
+                    if (res.data.food.user.favourites.filter(e => e.food === this.state.foodId).length > 0) {
+                        this.setState({favByUser: true})
+                    } else {
+                        this.setState({favByUser: false})
+                    }
                 }
             })
             .catch(err => console.log(err))
@@ -56,6 +73,47 @@ class ViewRecipe extends Component {
             })
             .catch(err => console.log(err))
     }
+    like = () => {
+        console.log('liked')
+        Axios.post(config.get('server_path')+'/food/like', {foodId: this.state.foodId, userId: this.state.user})
+            .then(res => {
+                if (res.data.success) {
+                    this.setState({likedByUser: true})
+                    console.log(res.data)
+                }
+            })
+            .catch(err => console.log(err))
+    }
+    unlike = () => {
+        console.log('unlike');
+        Axios.post(config.get('server_path')+'/food/dislike', {foodId: this.state.foodId, userId: this.state.user})  
+            .then(res => {
+                if (res.data.success) {
+                    this.setState({likedByUser: false})
+                }
+            })
+            .catch(err => console.log(err))
+    }
+    fav = () => {
+        console.log('fav'); 
+        Axios.post(config.get('server_path')+'/food/fav', {foodId: this.state.foodId, userId: this.state.user})
+            .then(res => {
+                if (res.data.success) {
+                    this.setState({favByUser: true})
+                }
+            })
+            .catch(err => console.log(err))
+    }
+    unfav = () => {
+        console.log('unfav');     
+        Axios.post(config.get('server_path')+'/food/unfav', {foodId: this.state.foodId, userId: this.state.user})
+            .then(res => {
+                if (res.data.success) {
+                    this.setState({favByUser: false})
+                }
+            })
+            .catch(err => console.log(err))   
+    }
     render() {
         return(
             <React.Fragment>                
@@ -65,6 +123,8 @@ class ViewRecipe extends Component {
                                 {this.deleteModal()}
                                 <h1>{this.state.food.name}</h1>
                                 <p>made by: <b>{this.state.food.user.details.name}</b> | ({this.state.food.cusine.name})</p>
+                                {this.state.likedByUser ? (<Like unlike={this.unlike} />) : (<Unlike like={this.like} />)}
+                                {this.state.favByUser ? (<Fav unfav={this.unfav} />) : (<Unfav fav={this.fav} />)}                                
                                 <hr/>
                                 <p>can serve: {this.state.food.servings}</p>
                                 <p><b>Ingredients: </b></p>
