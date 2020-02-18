@@ -28,6 +28,7 @@ class AddRecipe extends Component {
             recipe: {
                 step: []
             },
+            keywordsForSearching: [],
             modal: false,
             redirectAfterAdding: false
         }
@@ -59,14 +60,16 @@ class AddRecipe extends Component {
             })
             .catch(err => console.log(err))
     }
-    addFood = () => {
+    addFood = () => {        
         for(let i = 0; i < this.state.tempSelectedIngredients.length; i++) {
             var e = this.state.tempSelectedIngredients[i]
             var temp = this.state.ingredients
-            temp.push({ing: e._id, quantity: e.quantity, unit: e.unit})
-            // console.log(temp)
-            this.setState({ingredients: temp})
+            var temp1 = this.state.keywordsForSearching
 
+            temp.push({ing: e._id, quantity: e.quantity, unit: e.unit})  
+            temp1.push(e.name)          
+            console.log(temp1+'-----')
+            this.setState({ingredients: temp, keywordsForSearching: temp1})
         }
         if (this.state.category === 'Veg') {
             this.setState({veg: true, nonVeg: false})
