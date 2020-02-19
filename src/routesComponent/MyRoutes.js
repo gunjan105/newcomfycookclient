@@ -10,6 +10,7 @@ import EditProfile from '../classComponents/EditProfile'
 import MyRecipes from '../classComponents/MyRecipes'
 import AddRecipe from '../classComponents/AddRecipe'
 import ViewRecipe from '../classComponents/ViewRecipe'
+import UserFavFood from '../classComponents/UserFavFood'
 
 const MyRoutes = () => {
     return(
@@ -23,7 +24,8 @@ const MyRoutes = () => {
                 <Route path="/user/my-recipe" exact component={MyRecipes} />
                 <Route path="/user/add-recipe" exact component={AddRecipe} />
                 <Route path="/user/view-recipe/:fid" exact component={ViewRecipe} />
-                <Route path="/user/edit/profile" exact component={EditProfile} />         
+                <Route path="/user/edit/profile" exact component={EditProfile} />    
+                <Route path="/user/favourites" exact component={UserFavFood} />     
                 <Route path="/logout" exact component={Logout} />         
             </Switch>
         </React.Fragment>

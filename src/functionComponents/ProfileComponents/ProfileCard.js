@@ -8,7 +8,7 @@ import ProfileCardHeader from './ProfileCardHeader';
 import ProfileCardInfo from './ProfileCardInfo';
 // import { Redirect } from 'react-router-dom';
 
-const ProfileCard = ({user, editClicked}) => {
+const ProfileCard = ({user, editClicked, favClicked}) => {
     return(
         <React.Fragment>
             <div className="row mt-5">
@@ -36,7 +36,7 @@ const ProfileCard = ({user, editClicked}) => {
                             </div>
                             <div className="row">
                                 <div className="col"><Button outline color="primary" className="btn btn-sm" onClick={editClicked}>Edit <AiOutlineEdit></AiOutlineEdit></Button></div>
-                                <div className="col"><Button outline color="success" className="btn btn-sm">Go To Favourites <GoHeart color="red" fontSize="20"></GoHeart></Button></div>
+                                <div className="col"><Button outline color="success" className="btn btn-sm" onClick={favClicked}>Go To Favourites <GoHeart color="red" fontSize="20"></GoHeart></Button></div>
                             </div>
                         </CardBody>
                         <CardFooter>ComfyCook loves you ! <FaRegSmile></FaRegSmile></CardFooter>

@@ -24,7 +24,7 @@ const SearchedIngredientsView = ({searchedIngredientsArray, removeFromSearchedIn
                 <div style={ingredientContainerStyle}>
                     <p>Will show you the food recipe which have...</p>
                     {searchedIngredientsArray.map((i, key) => <span key={key} style={ingredientsTab}>
-                        {i} <IoMdClose color="danger" style={closeIconStyle} onClick={() => removeFromSearchedIngredients(i)}></IoMdClose>
+                        {i} <IoMdClose color="red" style={closeIconStyle} onClick={() => removeFromSearchedIngredients(i)}></IoMdClose>
                     </span>)}
                 </div>
             )}

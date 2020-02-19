@@ -12,7 +12,8 @@ class Profile extends Component {
         this.state = {
             user: null,
             userAuthenticate: true,
-            editClicked: false
+            editClicked: false,
+            favClicked: false
         }
     }
     componentDidMount() {
@@ -31,11 +32,14 @@ class Profile extends Component {
     editClicked = () => {
         this.setState({editClicked: true})
     }
+    favClicked = () => {
+        this.setState({favClicked: true})
+    }
     render() {
         return(
             <React.Fragment>
                 <div className="container">
-                    {this.state.user ? (<ProfileCard user={this.state.user} editClicked={this.editClicked} />) : (null)}
+                    {this.state.user ? (<ProfileCard user={this.state.user} editClicked={this.editClicked} favClicked={this.favClicked} />) : (null)}
                 </div>           
                 {this.authenticationRedirect()} 
                 {this.otherRedirects()}
@@ -46,7 +50,9 @@ class Profile extends Component {
         return <div>{this.state.userAuthenticate ? (null) : (<Redirect to="/" />)}</div>;
     }
     otherRedirects() {
-        return <div>{this.state.editClicked ? (<Redirect to="/user/edit/profile" />) : (null)}</div>
+        return <div>{this.state.editClicked ? (<Redirect to="/user/edit/profile" />) : (null)}
+            {this.state.favClicked ? (<Redirect to="/user/favourites" />) : (null)}
+        </div>
     }
 }
 
