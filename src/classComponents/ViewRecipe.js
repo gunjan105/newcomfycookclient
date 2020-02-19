@@ -34,18 +34,23 @@ class ViewRecipe extends Component {
             .then(res => {
                 if(res.data.success){
                     this.setState({food: res.data.food})
-                    console.log(res.data.food)
+                    // console.log(res.data.food)
                     if (res.data.food.likes.indexOf(this.state.user) > -1) {
                         this.setState({likedByUser: true})
                     } else {
                         this.setState({likedByUser: false})
                     }
-                    console.log(res.data.food.user.favourites)
-                    if (res.data.food.user.favourites.filter(e => e.food === this.state.foodId).length > 0) {
-                        this.setState({favByUser: true})
-                    } else {
-                        this.setState({favByUser: false})
-                    }
+                    Axios.get(config.get('server_path')+'/user/'+this.state.user)
+                        .then(res1 => {
+                            if (res1.data.success) {
+                                if (res1.data.user.favourites.filter(e => e.food === this.state.foodId).length > 0) {
+                                    this.setState({favByUser: true})
+                                } else {
+                                    this.setState({favByUser: false})
+                                }      
+                            }
+                        })   
+                        .catch(err1 => console.log(err1))                 
                 }
             })
             .catch(err => console.log(err))

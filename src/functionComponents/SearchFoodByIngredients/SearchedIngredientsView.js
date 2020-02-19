@@ -14,7 +14,7 @@ const SearchedIngredientsView = ({searchedIngredientsArray, removeFromSearchedIn
     }
     const ingredientContainerStyle = {
         padding: "10px 5px",
-        width: "90%",
+        width: "100%",
         margin: "10px auto",
         border: "1px solid #e6e6e6"
     }
@@ -28,7 +28,7 @@ const SearchedIngredientsView = ({searchedIngredientsArray, removeFromSearchedIn
                     </span>)}
                 </div>
             )}
-            <Button onClick={searchFoodByIngredientsFunction}>Search</Button>
+            <Button onClick={searchFoodByIngredientsFunction} outline color="success" className="mt-2">Search</Button>
         </React.Fragment>
     )
 }

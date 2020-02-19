@@ -75,14 +75,16 @@ class SearchFoodByIngredients extends Component {
         console.log(this.state)
         return(
             <React.Fragment>
-                <ReactSearchBox
-                    placeholder="search ingredients"
-                    data={this.state.dataForSearchBar}
-                    onSelect={record => this.addToSearchedIngredients(record.value)}
-                />
-                <SearchedIngredientsView searchedIngredientsArray={this.state.searchedIngredientsArray} removeFromSearchedIngredients={this.removeFromSearchedIngredients} searchFoodByIngredientsFunction={this.searchFoodByIngredientsFunction} />                
-                {this.state.searchedFood ? (<SearchedFoodView searchedFood={this.state.searchedFood} viewUserRecipe={this.viewUserRecipe} />) : (null)}
-                {this.state.viewUserRecipe ? (<Redirect to={"/user/view-recipe/"+this.state.viewUserRecipeFoodId} />) : (null)}
+                <div className="container mt-4">
+                    <ReactSearchBox
+                        placeholder="search ingredients"
+                        data={this.state.dataForSearchBar}
+                        onSelect={record => this.addToSearchedIngredients(record.value)}
+                    />
+                    <SearchedIngredientsView searchedIngredientsArray={this.state.searchedIngredientsArray} removeFromSearchedIngredients={this.removeFromSearchedIngredients} searchFoodByIngredientsFunction={this.searchFoodByIngredientsFunction} />                
+                    {this.state.searchedFood ? (<SearchedFoodView searchedFood={this.state.searchedFood} viewUserRecipe={this.viewUserRecipe} />) : (null)}
+                    {this.state.viewUserRecipe ? (<Redirect to={"/user/view-recipe/"+this.state.viewUserRecipeFoodId} />) : (null)}
+                </div>                
             </React.Fragment>
         )
     }
