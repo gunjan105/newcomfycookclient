@@ -28,7 +28,7 @@ class AddRecipe extends Component {
             recipe: {
                 step: []
             },
-            keywordsForSearching: [],
+            hardKeywordsForSearching: [],
             modal: false,
             redirectAfterAdding: false
         }
@@ -64,12 +64,12 @@ class AddRecipe extends Component {
         for(let i = 0; i < this.state.tempSelectedIngredients.length; i++) {
             var e = this.state.tempSelectedIngredients[i]
             var temp = this.state.ingredients
-            var temp1 = this.state.keywordsForSearching
+            var temp1 = this.state.hardKeywordsForSearching
 
             temp.push({ing: e._id, quantity: e.quantity, unit: e.unit})  
             temp1.push(e.name)          
             console.log(temp1+'-----')
-            this.setState({ingredients: temp, keywordsForSearching: temp1})
+            this.setState({ingredients: temp, hardKeywordsForSearching: temp1})
         }
         if (this.state.category === 'Veg') {
             this.setState({veg: true, nonVeg: false})

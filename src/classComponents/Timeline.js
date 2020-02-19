@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom'
+import SearchFoodByIngredients from './SearchFoodByIngredients';
 
 class Timeline extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class Timeline extends Component {
     render() {
         return(
             <React.Fragment>
-                <h1>Timeline</h1>
+                <SearchFoodByIngredients />
                 {this.authenticationRedirect()}
             </React.Fragment>
         )
