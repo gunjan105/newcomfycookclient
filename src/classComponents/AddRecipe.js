@@ -29,6 +29,8 @@ class AddRecipe extends Component {
                 step: []
             },
             hardKeywordsForSearching: [],
+            softKeywordsForSearchingText: null,
+            softKeywordsForSearching: [],
             modal: false,
             redirectAfterAdding: false
         }
@@ -82,7 +84,13 @@ class AddRecipe extends Component {
             }
         } else {
             this.setState({veg: false, nonVeg: true, jain: false, swaminarayan: false, faradi: false})            
-        }                
+        }    
+        var arrOfHashtags = this.state.softKeywordsForSearchingText.split("#")
+        arrOfHashtags.shift()
+        for (let j = 0; j < arrOfHashtags.length; j++) {
+            arrOfHashtags[j] = arrOfHashtags[j].trim();
+        }
+        console.log(arrOfHashtags)            
         console.log(this.state)
         console.log('this is final')
         Axios.post(config.get('server_path')+'/food/makeFoodRecipe', this.state)
@@ -227,7 +235,11 @@ class AddRecipe extends Component {
                             {this.state.recipe.step.length === 0 ? (null) : (<ShowRecipeSteps recipe={this.state.recipe} />)}
                         </div>
                     </div>
-                    
+                    <div className="row">
+                        <div className="col-12">
+                            <FormInput type="textarea" name="softKeywordsForSearchingText" onChange={this.onChange} placeholder="add hashtags for searching" />
+                        </div>
+                    </div>
                     <Button onClick={this.addFood} outline color="success">Add</Button>                       
                 </Form>
                 {this.state.modal ? (this.modal()) : (null)}

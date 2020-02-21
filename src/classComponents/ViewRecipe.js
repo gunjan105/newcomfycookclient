@@ -11,6 +11,7 @@ import Like from '../functionComponents/ViewRecipeComponents/Like'
 import Fav from '../functionComponents/ViewRecipeComponents/Fav'
 import Unlike from '../functionComponents/ViewRecipeComponents/Unlike'
 import Unfav from '../functionComponents/ViewRecipeComponents/Unfav'
+import Comments from '../functionComponents/ViewRecipeComponents/Comments'
 
 
 class ViewRecipe extends Component {
@@ -50,7 +51,7 @@ class ViewRecipe extends Component {
                                 }      
                             }
                         })   
-                        .catch(err1 => console.log(err1))                 
+                        .catch(err1 => console.log(err1))                                         
                 }
             })
             .catch(err => console.log(err))
@@ -119,6 +120,30 @@ class ViewRecipe extends Component {
             })
             .catch(err => console.log(err))   
     }
+    onChangeComment = (e) => {
+        this.setState({comment: e.target.value})                
+    }
+    comment = () => {        
+        var data = {
+            comment: this.state.comment,
+            userId: this.state.user,
+            foodId: this.state.foodId
+        }
+
+        Axios.post(config.get('server_path')+'/food/comment', data)
+            .then(res => {
+                if (res.data.success) {                    
+                    Axios.get(config.get('server_path')+'/food/get/'+this.state.foodId)
+                        .then(res1 => {
+                            if (res1.data.success) {
+                                this.setState({food: res1.data.food, comment: ''})
+                            }
+                        })
+                        .catch(err1 => console.log(err1))
+                }
+            })
+            .catch(err => console.log(err))
+    }
     render() {
         return(
             <React.Fragment>                
@@ -153,6 +178,10 @@ class ViewRecipe extends Component {
                                 )
                                 : 
                                 (<div></div>)}
+
+
+                                <Comments comment={this.comment} onChangeComment={this.onChangeComment} food={this.state.food} commentState={this.state.comment} />
+                                
                         </div>
                     )
                     :
