@@ -12,6 +12,7 @@ import Fav from '../functionComponents/ViewRecipeComponents/Fav'
 import Unlike from '../functionComponents/ViewRecipeComponents/Unlike'
 import Unfav from '../functionComponents/ViewRecipeComponents/Unfav'
 import Comments from '../functionComponents/ViewRecipeComponents/Comments'
+import Rate from '../functionComponents/ViewRecipeComponents/Rate'
 
 
 class ViewRecipe extends Component {
@@ -156,6 +157,7 @@ class ViewRecipe extends Component {
                                 {this.state.likedByUser ? (<Like unlike={this.unlike} />) : (<Unlike like={this.like} />)}
                                 {this.state.favByUser ? (<Fav unfav={this.unfav} />) : (<Unfav fav={this.fav} />)}                                
                                 <hr/>
+                                <Rate />
                                 <p>can serve: {this.state.food.servings}</p>
                                 <p><b>Ingredients: </b></p>
                                 <ListGroup>
