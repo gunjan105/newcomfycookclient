@@ -93,7 +93,21 @@ class AddRecipe extends Component {
         console.log(arrOfHashtags)            
         console.log(this.state)
         console.log('this is final')
-        Axios.post(config.get('server_path')+'/food/makeFoodRecipe', this.state)
+        var dataToPass = {
+            name: this.state.name,
+            ingredients: this.state.ingredients,
+            veg: this.state.veg,
+            nonVeg: this.state.nonVeg,
+            jain: this.state.jain,
+            swaminarayan: this.state.swaminarayan,
+            faradi: this.state.faradi,
+            cusine: this.state.cusine,
+            servings: this.state.servings,
+            recipe: this.state.recipe,
+            user: this.state.user,
+            hardKeywordsForSearching: this.state.hardKeywordsForSearching
+        }
+        Axios.post(config.get('server_path')+'/food/makeFoodRecipe', dataToPass)
             .then(res => {
                 if (res.data.success) {
                     console.log(res.data)
