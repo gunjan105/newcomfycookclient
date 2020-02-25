@@ -31,6 +31,10 @@ class App extends Component {
           (<GeneralNavbar />)
         }
         <MyRoutes />
+      this site has been hacked
+      
+      
+      @Copyright Palak Pujara
       </div>
       </Router>
     );
